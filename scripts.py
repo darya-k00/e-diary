@@ -5,6 +5,14 @@ from datacenter.models import Lesson
 from datacenter.models import Commendation
 import random
 
+COMPLIMENTS = [
+        'Хвалю!',
+        'Молодец!',
+        'Сказано здорово - просто ясно!',
+        'Я поражен!',
+        'Ты растешь над собой!'
+    ]
+
 
 def fix_marks(schoolkid):
     schoolkid = get_schoolkid(schoolkid)
@@ -25,15 +33,8 @@ def remove_chastisements(schoolkid):
 def create_commendation(schoolkid, subject_name):
     lessons=Lesson.objects.filter(year_of_study=schoolkid.year_of_study, group_letter=schoolkid.group_letter)
     lesson = lessons.filter(subject__title=subject_name).order_by('date').first()
-    commendation_texts = [
-        'Хвалю!',
-        'Молодец!',
-        'Сказано здорово - просто ясно!',
-        'Я поражен!',
-        'Ты растешь над собой!'
-    ]
 
-    Commendation.objects.create(schoolkid=schoolkid, teacher=lesson.teacher,subject=lesson.subject,created=lesson.date,text=random.choice(commendation_texts))
+    Commendation.objects.create(schoolkid=schoolkid, teacher=lesson.teacher,subject=lesson.subject,created=lesson.date,text=random.choice(COMPLIMENTS))
 
 
 def get_schoolkid(full_name):
