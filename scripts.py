@@ -32,7 +32,10 @@ def remove_chastisements(schoolkid):
 
 def create_commendation(schoolkid, subject_name):
     lessons=Lesson.objects.filter(year_of_study=schoolkid.year_of_study, group_letter=schoolkid.group_letter, subject__title=subject_name).order_by('date').first()
-
+    if lesson is None:
+        print("Нет уроков по данному предмету")
+        return
+            
     Commendation.objects.create(schoolkid=schoolkid, teacher=lesson.teacher,subject=lesson.subject,created=lesson.date,text=random.choice(COMPLIMENTS))
 
 
