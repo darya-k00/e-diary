@@ -41,6 +41,14 @@ python3 manage.py shell
 fix_marks(schoolkid)
 ```
 Исправляет плохие оценки на 5 для заданного урока
+```
+remove_chastisements(schoolkid)
+```
+Удаляет замечания
+```
+create_commendation(schoolkid, subject_name)
+```
+Создает хвалебные сообщения
 ## Цели проекта
 
 Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте [Devman](https://dvmn.org).
