@@ -39,7 +39,7 @@ def create_commendation(schoolkid, subject_name):
 def get_schoolkid(full_name):
     try:
         return Schoolkid.objects.get(full_name__contains=full_name)
-    except Schoolkid.ObjectDoesNotExist:
+    except Schoolkid.DoesNotExist:
         print("Такого ученика не существует")
         return None
     except Schoolkid.MultipleObjectsReturned:
