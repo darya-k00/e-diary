@@ -16,7 +16,7 @@ COMPLIMENTS = [
 
 def fix_marks(schoolkid):
     schoolkid = get_schoolkid(schoolkid)
-    if schoolkid is None:
+    if not schoolkid:
         return
     bad_grades = Mark.objects.filter(schoolkid=schoolkid, points__in=[2, 3]).update(points=5)
     print('Плохие оценки исправлены.')
@@ -32,7 +32,7 @@ def remove_chastisements(schoolkid):
 
 def create_commendation(schoolkid, subject_name):
     lessons=Lesson.objects.filter(year_of_study=schoolkid.year_of_study, group_letter=schoolkid.group_letter, subject__title=subject_name).order_by('date').first()
-    if lesson is None:
+    if not lesson:
         print("Нет уроков по данному предмету")
         return
             
